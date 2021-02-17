@@ -59,8 +59,8 @@ jobs:
       - <<: *restore_cache
       - <<: *install_node_modules
       - run:
-          name: Give permissions to install packages
-          command: sudo chown -R $(whoami) /usr/local/lib/node_modules/
+          name: Give permissions to install NPM packages
+          command: npm set prefix=/home/circleci/npm && echo 'export PATH=$HOME/circleci/npm/bin:$PATH' >> /home/circleci/.bashrc
       - run:
           name: Install netlify-cli
           command: npm install -g --silent netlify-cli
