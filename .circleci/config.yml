@@ -11,6 +11,9 @@ commands:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
       - run:
+          name: Resolving access to local ENV
+          command: npm set prefix=/home/circleci/npm && echo 'export PATH=$HOME/circleci/npm/bin:$PATH' >> /home/circleci/.bashrc
+      - run:
           name: Prepare Netlify CLI for deploy
           command: npm i -g netlify-cli
       - run:
