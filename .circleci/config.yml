@@ -1,3 +1,4 @@
+# Build preps
 executors:
   node:
     docker:
@@ -21,8 +22,7 @@ aliases:
       key: yarn-cache-netlify-{{ checksum "yarn.lock" }}
       paths:
         - ./node_modules
-
-
+# Jobs
 version: 2.1
 jobs:
 
@@ -66,6 +66,7 @@ jobs:
           name: Deploy to Netlify
           command: npx netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=public
 
+# Workflows
 workflows:
   workflow:
     jobs:
