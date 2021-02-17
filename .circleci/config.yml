@@ -62,8 +62,11 @@ jobs:
           name: Install netlify-cli
           command: sudo npm install -g --silent netlify-cli
       - run:
+          name: Give Access to USER
+          command: sudo chown -R $USER /usr/local/lib/node_modules
+      - run:
           name: Deploy to Netlify
-          command: ./node_modules/.bin/netlify deploy --dir=./public -p
+          command: netlify deploy --dir=./public -p
 
 workflows:
   workflow:
