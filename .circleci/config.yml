@@ -25,7 +25,6 @@ aliases:
 
 version: 2.1
 jobs:
-
   test:
     executor: node
     steps:
