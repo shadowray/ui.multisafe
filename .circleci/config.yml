@@ -60,7 +60,7 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Give Access to USER
-          command: sudo chown -R root:$USER /usr/local/lib/node_modules
+          command: sudo chown -R $USER /usr/local/lib/node_modules
       - run:
           name: Give permissions to install packages
           command: sudo chmod -R 775 /usr/local/lib/node_modules/
