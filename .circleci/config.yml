@@ -11,13 +11,18 @@ commands:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
       - run:
+          name: Prepare Netlify CLI for deploy
+          command: npm i -g netlify-cli
+      - run:
           name: Install Dependencies
           command: yarn install
       - save_cache:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
-      - run: yarn build
+      - run:
+          name: Build static website
+          command: yarn build
 workflows:
   workflow:
     jobs:
@@ -36,13 +41,13 @@ jobs:
       - build-app
       - run:
           name: Netlify Deploy
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=public
+          command: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=public
 # Release job
   release:
     executor: node-executor
     working_directory: ~/repo
     steps:
-      - run-prod-build
+      - build-app
       - run:
           name: Netlify Deploy
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod --dir=public
+          command: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod --dir=public
