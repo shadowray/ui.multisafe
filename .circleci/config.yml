@@ -60,7 +60,7 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Give permissions to install packages
-          command: sudo chmod -R $(whoami) /usr/local/lib/node_modules/
+          command: sudo chown -R $(whoami) /usr/local/lib/node_modules/
       - run:
           name: Install netlify-cli
           command: sudo npm install -g --silent netlify-cli
