@@ -2,9 +2,6 @@ executors:
   node:
     docker:
       - image: circleci/node:lts
-        environment:
-          NETLIFY_SITE_ID: $NETLIFY_SITE_ID
-          NETLIFY_AUTH_TOKEN: $NETLIFY_AUTH_TOKEN
 aliases:
   restore_cache: &restore_cache
     restore_cache:
@@ -60,18 +57,12 @@ jobs:
           at: ./
       - <<: *restore_cache
       - <<: *install_node_modules
-#      - run:
-#          name: Give permissions to install NPM packages
-#          command: npm set prefix=/home/circleci/npm && echo 'export PATH=$HOME/circleci/npm/bin:$PATH' >> /home/circleci/.bashrc
-      - run:
-          name: ECHO
-          command: echo $NETLIFY_SITE_ID
       - run:
           name: Install netlify-cli
           command: yarn add netlify-cli
       - run:
           name: Deploy to Netlify
-          command: yarn run netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=./public -p
+          command: yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=./public -p
 
 workflows:
   workflow:
