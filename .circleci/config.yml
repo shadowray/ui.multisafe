@@ -25,6 +25,7 @@ aliases:
 
 version: 2.1
 jobs:
+
   test:
     executor: node
     steps:
@@ -60,10 +61,10 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Install netlify-cli
-          command: npm i -g --silent netlify-cli
+          command: sudo npm install -g --silent netlify-cli
       - run:
           name: Deploy to Netlify
-          command: npx run netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=public
+          command: npx netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=public
 
 workflows:
   workflow:
