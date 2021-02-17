@@ -22,7 +22,6 @@ aliases:
       paths:
         - ./node_modules
 
-
 version: 2.1
 jobs:
 
