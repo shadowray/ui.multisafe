@@ -23,7 +23,7 @@ aliases:
         - ./node_modules
 
 
-version: 2
+version: 2.1
 jobs:
   test:
     executor: node
@@ -66,7 +66,7 @@ jobs:
           command: npx netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=public
 
 workflows:
-  build_deploy:
+  workflow:
     jobs:
       - test:
           filters:
