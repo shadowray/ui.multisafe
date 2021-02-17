@@ -60,7 +60,7 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Give Access to USER
-          command: sudo chown -R /usr/local/lib/node_modules
+          command: echo $USER
       - run:
           name: Install netlify-cli
           command: sudo npm install -g --silent netlify-cli
