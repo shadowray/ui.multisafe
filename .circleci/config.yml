@@ -93,8 +93,7 @@ deploy:
 #          name: Build static website
 #          command: yarn build
 workflows:
-  version: 2.1
-  build_and_deploy:
+  workflow:
     jobs:
       - test:
           filters:
